@@ -42,7 +42,7 @@ class RepositoryFragment : Fragment() {
     }
 
     private fun initView() = with(binding) {
-        binding.rvRepositories.adapter = repositoryAdapter
+        binding.repositoriesRV.adapter = repositoryAdapter
 
         binding.swiperefresh.setOnRefreshListener {
             viewModel.fetchRepositoryItems()
@@ -54,25 +54,31 @@ class RepositoryFragment : Fragment() {
             viewModel.repositoryItems.collectLatest {
                 when (it) {
                     is State.Loading -> {
-                        binding.pbLoading.show()
-                        binding.rvRepositories.hide()
+                        binding.progressBar.show()
+                        binding.repositoriesRV.hide()
                     }
 
                     is State.Success -> {
-                        binding.pbLoading.hide()
-                        binding.swiperefresh.isRefreshing = false
-                        binding.rvRepositories.show()
-                        repositoryAdapter.submitList(it.data)
+                        showRepositories(it.data as List<Repository>)
                     }
 
                     is State.Error -> {
-                        binding.pbLoading.hide()
+                        binding.progressBar.hide()
                         binding.swiperefresh.isRefreshing = false
-                        binding.rvRepositories.hide()
+                        binding.repositoriesRV.hide()
                         Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
+        }
+    }
+
+    private fun showRepositories(it: List<Repository>) {
+        with(binding) {
+            progressBar.hide()
+            swiperefresh.isRefreshing = false
+            repositoriesRV.show()
+            repositoryAdapter.submitList(it)
         }
     }
 }
