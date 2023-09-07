@@ -33,11 +33,6 @@ ext {
             converterGson: "com.squareup.retrofit2:converter-gson:${retrofit}"
     ]
 
-    okhttpLogging = '4.10.0'
-    okhttpDependencies = [
-            loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttpLogging}"
-    ]
-
     hilt = '2.44.2'
     hiltDependencies = [
             hiltAndroid : "com.google.dagger:hilt-android:${hilt}",

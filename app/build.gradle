@@ -53,8 +53,6 @@ dependencies {
     implementation retrofitDependencies.retrofit
     implementation retrofitDependencies.converterGson
 
-    implementation okhttpDependencies.loggingInterceptor
-
     implementation hiltDependencies.hiltAndroid
     kapt hiltDependencies.hiltCompiler
 
