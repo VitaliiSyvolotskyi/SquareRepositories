@@ -39,15 +39,16 @@ android {
 }
 
 dependencies {
-    implementation androidXDependencies.core
-    implementation androidXDependencies.appcompat
-    implementation androidXDependencies.material
-    implementation androidXDependencies.constraintlayout
+    implementation androidX.core
+    implementation androidX.appcompat
+    implementation androidX.material
+    implementation androidX.constraintlayout
+    implementation androidX.swiperefreshlayout
 
-    implementation androidXDependencies.fragmentKtx
-    implementation androidXDependencies.lifecycleViewModelKtx
-    implementation androidXDependencies.lifecycleRuntimeKtx
-    implementation androidXDependencies.lifecycleLiveDataKtx
+    implementation androidX.fragmentKtx
+    implementation androidX.lifecycleViewModelKtx
+    implementation androidX.lifecycleRuntimeKtx
+    implementation androidX.lifecycleLiveDataKtx
 
     implementation retrofitDependencies.retrofit
     implementation retrofitDependencies.converterGson
@@ -61,6 +62,6 @@ dependencies {
     androidTestImplementation mockitoDependencies.mockitoAndroid
 
     testImplementation testsDependencies.junit
-    androidTestImplementation androidXDependencies.testExtJunit
-    androidTestImplementation androidXDependencies.espressoCore
+    androidTestImplementation androidX.testExtJunit
+    androidTestImplementation androidX.espressoCore
 }

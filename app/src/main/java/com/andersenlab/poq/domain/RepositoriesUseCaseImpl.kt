@@ -1,23 +1,19 @@
 package com.andersenlab.poq.domain
 
-import com.andersenlab.poq.data.model.RepositoryResponse
 import com.andersenlab.poq.data.api.RepositoriesApi
 import com.andersenlab.poq.data.mapper.toRepositoryItem
-import com.andersenlab.poq.ui.RepositoryItems
-import com.andersenlab.poq.ui.State
-import kotlinx.coroutines.CancellationException
+import com.andersenlab.poq.presentation.repositories.Repository
+import com.andersenlab.poq.presentation.state.State
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RepositoriesUseCaseImpl @Inject constructor(private val repositoriesApi: RepositoriesApi) :
     RepositoriesUseCase {
 
-
-    override suspend fun fetchRepositories(): Flow<State<RepositoryItems>> {
+    override suspend fun fetchRepositories(): Flow<State<List<Repository>>> {
         return flow {
             val repositories = repositoriesApi.getRepositories().body()?.map {
                 it.toRepositoryItem()

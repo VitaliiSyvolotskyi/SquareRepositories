@@ -1,4 +1,4 @@
-package com.andersenlab.poq.ui.repositories
+package com.andersenlab.poq.presentation.repositories
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.andersenlab.poq.databinding.FragmentRepositoriesBinding
-import com.andersenlab.poq.ui.RepositoryAdapter
-import com.andersenlab.poq.ui.State
+import com.andersenlab.poq.presentation.state.State
 import com.andersenlab.poq.utils.hide
 import com.andersenlab.poq.utils.show
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,7 +44,7 @@ class RepositoryFragment : Fragment() {
     private fun initView() = with(binding) {
         binding.rvRepositories.adapter = repositoryAdapter
 
-        binding.ivRefresh.setOnClickListener {
+        binding.swiperefresh.setOnRefreshListener {
             viewModel.fetchRepositoryItems()
         }
     }
@@ -61,12 +60,14 @@ class RepositoryFragment : Fragment() {
 
                     is State.Success -> {
                         binding.pbLoading.hide()
+                        binding.swiperefresh.isRefreshing = false
                         binding.rvRepositories.show()
                         repositoryAdapter.submitList(it.data)
                     }
 
                     is State.Error -> {
                         binding.pbLoading.hide()
+                        binding.swiperefresh.isRefreshing = false
                         binding.rvRepositories.hide()
                         Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                     }

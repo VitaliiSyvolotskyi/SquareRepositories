@@ -1,4 +1,4 @@
-package com.andersenlab.poq.ui
+package com.andersenlab.poq.presentation.repositories
 
 import android.content.Context
 import android.util.AttributeSet

@@ -1,7 +1,4 @@
-package com.andersenlab.poq.ui
-
-typealias RepositoryItems = List<Repository>
-
+package com.andersenlab.poq.presentation.state
 sealed class State<out R> {
     data class Success<out T>(
         val data: T?

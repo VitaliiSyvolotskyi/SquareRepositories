@@ -1,4 +1,4 @@
-package com.andersenlab.poq.ui
+package com.andersenlab.poq.presentation.repositories
 
 data class Repository (
     val id:Int,

@@ -4,51 +4,54 @@ ext {
     appcompat = '1.6.0'
     material = '1.7.0'
     constraintlayout = '2.1.4'
+    swipe = '1.2.0-alpha01'
     fragmentKtx = '1.5.5'
     lifecycleVersion = '2.5.1'
     testExtJunit = '1.1.5'
     espressoCore = '3.5.1'
 
-    androidXDependencies = [
-            core                    :     "androidx.core:core-ktx:${core}",
-            appcompat               :     "androidx.appcompat:appcompat:${appcompat}",
-            material                :     "com.google.android.material:material:${appcompat}",
-            constraintlayout        :     "androidx.constraintlayout:constraintlayout:${constraintlayout}",
+    androidX = [
+            core                 : "androidx.core:core-ktx:${core}",
+            appcompat            : "androidx.appcompat:appcompat:${appcompat}",
+            material             : "com.google.android.material:material:${appcompat}",
+            constraintlayout     : "androidx.constraintlayout:constraintlayout:${constraintlayout}",
+            swiperefreshlayout   : "androidx.swiperefreshlayout:swiperefreshlayout:${swipe}",
 
-            fragmentKtx             :     "androidx.fragment:fragment-ktx:${fragmentKtx}",
-            lifecycleViewModelKtx   :     "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleVersion}",
-            lifecycleRuntimeKtx     :     "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleVersion}",
-            lifecycleLiveDataKtx    :     "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycleVersion}",
 
-            testExtJunit            :     "androidx.test.ext:junit:${testExtJunit}",
-            espressoCore            :     "androidx.test.espresso:espresso-core:${espressoCore}"
+            fragmentKtx          : "androidx.fragment:fragment-ktx:${fragmentKtx}",
+            lifecycleViewModelKtx: "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleVersion}",
+            lifecycleRuntimeKtx  : "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleVersion}",
+            lifecycleLiveDataKtx : "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycleVersion}",
+
+            testExtJunit         : "androidx.test.ext:junit:${testExtJunit}",
+            espressoCore         : "androidx.test.espresso:espresso-core:${espressoCore}"
     ]
 
     retrofit = '2.9.0'
     retrofitDependencies = [
-            retrofit      :   "com.squareup.retrofit2:retrofit:${retrofit}",
-            converterGson :   "com.squareup.retrofit2:converter-gson:${retrofit}"
+            retrofit     : "com.squareup.retrofit2:retrofit:${retrofit}",
+            converterGson: "com.squareup.retrofit2:converter-gson:${retrofit}"
     ]
 
     okhttpLogging = '4.10.0'
     okhttpDependencies = [
-            loggingInterceptor  :  "com.squareup.okhttp3:logging-interceptor:${okhttpLogging}"
+            loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttpLogging}"
     ]
 
     hilt = '2.44.2'
     hiltDependencies = [
-            hiltAndroid  : "com.google.dagger:hilt-android:${hilt}",
-            hiltCompiler : "com.google.dagger:hilt-compiler:${hilt}"
+            hiltAndroid : "com.google.dagger:hilt-android:${hilt}",
+            hiltCompiler: "com.google.dagger:hilt-compiler:${hilt}"
     ]
 
     mockito = '4.10.0'
     mockitoDependencies = [
-            mockitoCore : "org.mockito:mockito-core:${mockito}",
-            mockitoAndroid : "org.mockito:mockito-android:${mockito}"
+            mockitoCore   : "org.mockito:mockito-core:${mockito}",
+            mockitoAndroid: "org.mockito:mockito-android:${mockito}"
     ]
 
     junit = '4.13.2'
     testsDependencies = [
-            junit : "junit:junit:${junit}"
+            junit: "junit:junit:${junit}"
     ]
 }

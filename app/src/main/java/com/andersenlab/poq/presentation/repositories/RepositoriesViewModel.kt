@@ -1,10 +1,9 @@
-package com.andersenlab.poq.ui.repositories
+package com.andersenlab.poq.presentation.repositories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andersenlab.poq.domain.RepositoriesUseCase
-import com.andersenlab.poq.ui.RepositoryItems
-import com.andersenlab.poq.ui.State
+import com.andersenlab.poq.presentation.state.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,8 +17,8 @@ import javax.inject.Inject
 class RepositoriesViewModel @Inject constructor(private val repository: RepositoriesUseCase) :
     ViewModel() {
 
-    private val _repositoryItems = MutableStateFlow<State<RepositoryItems>>(State.Loading)
-    val repositoryItems: StateFlow<State<RepositoryItems>> get() = _repositoryItems
+    private val _repositoryItems = MutableStateFlow<State<List<Repository>>>(State.Loading)
+    val repositoryItems: StateFlow<State<List<Repository>>> get() = _repositoryItems
 
     init {
         fetchRepositoryItems()
