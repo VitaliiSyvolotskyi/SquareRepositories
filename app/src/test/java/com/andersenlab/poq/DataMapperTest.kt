@@ -7,7 +7,7 @@ import com.andersenlab.poq.data.model.RepositoryResponse
 import com.andersenlab.poq.domain.model.Repository
 import org.junit.Test
 
-class MapperTest : BaseTest() {
+class DataMapperTest : BaseTest() {
     @Test
     fun mappingTest() {
         val responseModel = RepositoryResponse(
