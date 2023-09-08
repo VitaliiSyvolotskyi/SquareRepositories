@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class RepositoryModule {
-   @Singleton
+    @Singleton
     @Provides
     fun provideDataRepositoryUseCase(
         api: RepositoriesApi

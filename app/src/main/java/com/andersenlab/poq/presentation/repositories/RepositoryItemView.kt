@@ -3,11 +3,10 @@ package com.andersenlab.poq.presentation.repositories
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import com.andersenlab.poq.databinding.ItemSquareReposBinding
+import com.andersenlab.poq.domain.model.Repository
 
 class RepositoryItemView @JvmOverloads constructor(
     context: Context,

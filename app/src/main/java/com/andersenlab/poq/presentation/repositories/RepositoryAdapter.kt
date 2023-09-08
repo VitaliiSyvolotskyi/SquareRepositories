@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.andersenlab.poq.domain.model.Repository
 
 class RepositoryAdapter : ListAdapter<Repository, RepositoryAdapter.ViewHolder>(DIFF_CALLBACK) {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

@@ -8,7 +8,6 @@ ext {
     fragmentKtx = '1.5.5'
     lifecycleVersion = '2.5.1'
     testExtJunit = '1.1.5'
-    espressoCore = '3.5.1'
 
     androidX = [
             core                 : "androidx.core:core-ktx:${core}",
@@ -23,8 +22,7 @@ ext {
             lifecycleRuntimeKtx  : "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleVersion}",
             lifecycleLiveDataKtx : "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycleVersion}",
 
-            testExtJunit         : "androidx.test.ext:junit:${testExtJunit}",
-            espressoCore         : "androidx.test.espresso:espresso-core:${espressoCore}"
+            testExtJunit         : "androidx.test.ext:junit:${testExtJunit}"
     ]
 
     retrofit = '2.9.0'

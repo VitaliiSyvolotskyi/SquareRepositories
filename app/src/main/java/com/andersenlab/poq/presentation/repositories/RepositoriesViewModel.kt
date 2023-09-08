@@ -3,6 +3,7 @@ package com.andersenlab.poq.presentation.repositories
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andersenlab.poq.domain.RepositoriesUseCase
+import com.andersenlab.poq.domain.model.Repository
 import com.andersenlab.poq.presentation.state.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

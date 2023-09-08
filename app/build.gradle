@@ -61,5 +61,4 @@ dependencies {
 
     testImplementation testsDependencies.junit
     androidTestImplementation androidX.testExtJunit
-    androidTestImplementation androidX.espressoCore
 }

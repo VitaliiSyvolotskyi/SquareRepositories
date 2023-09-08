@@ -1,6 +1,6 @@
 package com.andersenlab.poq.di
 
-import com.andersenlab.poq.Constants
+import com.andersenlab.poq.data.Constants
 import com.andersenlab.poq.data.api.RepositoriesApi
 import dagger.Module
 import dagger.Provides

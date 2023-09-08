@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.andersenlab.poq.databinding.FragmentRepositoriesBinding
+import com.andersenlab.poq.domain.model.Repository
 import com.andersenlab.poq.presentation.state.State
 import com.andersenlab.poq.utils.hide
 import com.andersenlab.poq.utils.show
@@ -53,24 +54,24 @@ class RepositoryFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.repositoryItems.collectLatest {
                 when (it) {
-                    is State.Loading -> {
-                        binding.progressBar.show()
-                        binding.repositoriesRV.hide()
-                    }
-
-                    is State.Success -> {
-                        showRepositories(it.data as List<Repository>)
-                    }
-
-                    is State.Error -> {
-                        binding.progressBar.hide()
-                        binding.swiperefresh.isRefreshing = false
-                        binding.repositoriesRV.hide()
-                        Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-                    }
+                    is State.Loading -> showLoading()
+                    is State.Success -> showRepositories(it.data as List<Repository>)
+                    is State.Error -> showError(it.message as String)
                 }
             }
         }
+    }
+
+    private fun showLoading() {
+        binding.progressBar.show()
+        binding.repositoriesRV.hide()
+    }
+
+    private fun showError(message: String) {
+        binding.progressBar.hide()
+        binding.swiperefresh.isRefreshing = false
+        binding.repositoriesRV.hide()
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun showRepositories(it: List<Repository>) {

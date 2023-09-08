@@ -5,13 +5,11 @@ import com.andersenlab.poq.data.mapper.toRepositoryItem
 import com.andersenlab.poq.data.model.RepositoryResponse
 import com.andersenlab.poq.domain.RepositoriesUseCase
 import com.andersenlab.poq.domain.RepositoriesUseCaseImpl
-import com.andersenlab.poq.presentation.repositories.Repository
+import com.andersenlab.poq.domain.model.Repository
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import com.andersenlab.poq.presentation.state.State
-import kotlinx.coroutines.flow.flow
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
