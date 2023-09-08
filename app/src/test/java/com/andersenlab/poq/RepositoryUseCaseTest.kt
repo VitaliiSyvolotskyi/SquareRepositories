@@ -1,38 +1,37 @@
 package com.andersenlab.poq
 
+import com.andersenlab.poq.core.test.BaseTest
 import com.andersenlab.poq.data.api.RepositoriesApi
-import com.andersenlab.poq.data.mapper.toRepositoryItem
+import com.andersenlab.poq.data.mapper.DataMapper
 import com.andersenlab.poq.data.model.RepositoryResponse
 import com.andersenlab.poq.domain.RepositoriesUseCase
 import com.andersenlab.poq.domain.RepositoriesUseCaseImpl
 import com.andersenlab.poq.domain.model.Repository
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertEquals
 import com.andersenlab.poq.presentation.state.State
-import org.junit.Before
+import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
+import junit.framework.TestCase.assertEquals
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
-class RepositoryUseCaseTest {
+class RepositoryUseCaseTest : BaseTest() {
+
 
     lateinit var dataRepository: RepositoriesUseCase
 
-    @Mock
+    @MockK
     lateinit var api: RepositoriesApi
 
-    @Before
-    fun setup() {
-        MockitoAnnotations.openMocks(this)
+    override fun setUp() {
+        super.setUp()
         dataRepository = RepositoriesUseCaseImpl(api)
     }
 
     @Test
     fun list() {
         runBlocking {
-            val response = listOf(
+            val testResponse = listOf(
                 RepositoryResponse(
                     123,
                     "Name Repo 1",
@@ -44,8 +43,8 @@ class RepositoryUseCaseTest {
                     "Lorem ipsum"
                 ),
             )
-            val repositoryItems = response.map { it.toRepositoryItem() }
-            Mockito.`when`(api.getRepositories()).thenReturn(response)
+            val repositoryItems = testResponse.map { DataMapper().mapModel(it) }
+            coEvery { api.getRepositories() } returns testResponse
             dataRepository.fetchRepositories().collectLatest {
                 if (it is State.Success) {
                     assertEquals(repositoryItems, it.data)
@@ -57,7 +56,19 @@ class RepositoryUseCaseTest {
     @Test
     fun empty() {
         runBlocking {
-            Mockito.`when`(api.getRepositories()).thenReturn(listOf())
+            coEvery { api.getRepositories() } returns listOf()
+            dataRepository.fetchRepositories().collectLatest {
+                if (it is State.Success) {
+                    assertEquals(listOf<Repository>(), it.data)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun error() {
+        runBlocking {
+            coEvery { api.getRepositories() } returns listOf()
             dataRepository.fetchRepositories().collectLatest {
                 if (it is State.Success) {
                     assertEquals(listOf<Repository>(), it.data)

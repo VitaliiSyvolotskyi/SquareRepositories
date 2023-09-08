@@ -39,11 +39,13 @@ ext {
 
     mockito = '4.10.0'
     mockitoDependencies = [
-            mockitoCore   : "org.mockito:mockito-core:${mockito}",
+            mockitoCore: "org.mockito:mockito-core:${mockito}",
     ]
 
     junit = '4.13.2'
+    mockkVersion = '1.13.3'
     testsDependencies = [
-            junit: "junit:junit:${junit}"
+            junit: "junit:junit:${junit}",
+            mock : "io.mockk:mockk:${mockkVersion}"
     ]
 }
