@@ -49,9 +49,8 @@ class RepositoryUseCaseTest : BaseTest() {
             val repositoryItems = testResponse.map { DataMapper().mapModel(it) }
             coEvery { api.getRepositories() } returns testResponse
             dataRepository.fetchRepositories().collectLatest {
-                if (it is State.Success) {
-                    assertEquals(repositoryItems, it.data)
-                }
+                assert(it is State.Success)
+                assertEquals(repositoryItems, (it as State.Success).data)
             }
             coVerify { api.getRepositories() }
         }
@@ -62,9 +61,8 @@ class RepositoryUseCaseTest : BaseTest() {
         runBlocking {
             coEvery { api.getRepositories() } returns listOf()
             dataRepository.fetchRepositories().collectLatest {
-                if (it is State.Success) {
-                    assertEquals(listOf<Repository>(), it.data)
-                }
+                assert(it is State.Success)
+                assertEquals(listOf<Repository>(), (it as State.Success).data)
             }
             coVerify { api.getRepositories() }
         }
