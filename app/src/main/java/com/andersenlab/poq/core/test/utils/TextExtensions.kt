@@ -10,11 +10,3 @@ import org.hamcrest.MatcherAssert
 infix fun <T> T?.isTheSame(value: T?) {
     MatcherAssert.assertThat(this, CoreMatchers.equalTo(value))
 }
-
-/*
-* Check that two objects are not equal
-* @param value - compared object
-*/
-infix fun <T, K : Any> T?.isNotTheSame(value: K?) {
-    MatcherAssert.assertThat(this, CoreMatchers.not(CoreMatchers.equalTo(value)))
-}
