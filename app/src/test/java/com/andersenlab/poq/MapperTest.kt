@@ -25,7 +25,6 @@ class MapperTest : BaseTest() {
         }
 
         val mapper = DataMapper()
-
         mapper.mapModel(responseModel) isTheSame expectedResult
     }
 }

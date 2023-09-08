@@ -40,6 +40,7 @@ class RepositoryFragment : Fragment() {
 
         initView()
         initObservers()
+        viewModel.fetchRepositoryItems()
     }
 
     private fun initView() = with(binding) {

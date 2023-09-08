@@ -1,5 +1,6 @@
 package com.andersenlab.poq.presentation.repositories
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andersenlab.poq.domain.RepositoriesUseCase
@@ -20,10 +21,6 @@ class RepositoriesViewModel @Inject constructor(private val repository: Reposito
 
     private val _repositoryItems = MutableStateFlow<State<List<Repository>>>(State.Loading)
     val repositoryItems: StateFlow<State<List<Repository>>> get() = _repositoryItems
-
-    init {
-        fetchRepositoryItems()
-    }
 
     fun fetchRepositoryItems() {
         viewModelScope.launch {

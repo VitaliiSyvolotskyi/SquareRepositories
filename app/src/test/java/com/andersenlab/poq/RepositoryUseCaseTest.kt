@@ -11,8 +11,11 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.runBlocking
 import com.andersenlab.poq.presentation.state.State
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertTrue
+import org.junit.Assert
 import org.junit.Test
 
 class RepositoryUseCaseTest : BaseTest() {
@@ -29,7 +32,7 @@ class RepositoryUseCaseTest : BaseTest() {
     }
 
     @Test
-    fun list() {
+    fun `fetchRepositories() returns list`() {
         runBlocking {
             val testResponse = listOf(
                 RepositoryResponse(
@@ -50,11 +53,12 @@ class RepositoryUseCaseTest : BaseTest() {
                     assertEquals(repositoryItems, it.data)
                 }
             }
+            coVerify { api.getRepositories() }
         }
     }
 
     @Test
-    fun empty() {
+    fun `fetchRepositories() returns empty list`() {
         runBlocking {
             coEvery { api.getRepositories() } returns listOf()
             dataRepository.fetchRepositories().collectLatest {
@@ -62,18 +66,22 @@ class RepositoryUseCaseTest : BaseTest() {
                     assertEquals(listOf<Repository>(), it.data)
                 }
             }
+            coVerify { api.getRepositories() }
         }
     }
 
     @Test
-    fun error() {
+    fun `fetchRepositories() throwing error`() {
         runBlocking {
-            coEvery { api.getRepositories() } returns listOf()
-            dataRepository.fetchRepositories().collectLatest {
-                if (it is State.Success) {
-                    assertEquals(listOf<Repository>(), it.data)
+            coEvery { api.getRepositories() } throws Error()
+            Assert.assertThrows(Error::class.java) {
+                runBlocking {
+                    dataRepository.fetchRepositories().collectLatest {
+                        assertTrue(it is State.Error)
+                    }
                 }
             }
+            coVerify { api.getRepositories() }
         }
     }
 }

@@ -7,7 +7,6 @@ ext {
     swipe = '1.2.0-alpha01'
     fragmentKtx = '1.5.5'
     lifecycleVersion = '2.5.1'
-    testExtJunit = '1.1.5'
 
     androidX = [
             core                 : "androidx.core:core-ktx:${core}",
@@ -21,8 +20,6 @@ ext {
             lifecycleViewModelKtx: "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleVersion}",
             lifecycleRuntimeKtx  : "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleVersion}",
             lifecycleLiveDataKtx : "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycleVersion}",
-
-            testExtJunit         : "androidx.test.ext:junit:${testExtJunit}"
     ]
 
     retrofit = '2.9.0'
