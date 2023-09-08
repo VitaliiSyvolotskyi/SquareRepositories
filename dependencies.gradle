@@ -40,7 +40,6 @@ ext {
     mockito = '4.10.0'
     mockitoDependencies = [
             mockitoCore   : "org.mockito:mockito-core:${mockito}",
-            mockitoAndroid: "org.mockito:mockito-android:${mockito}"
     ]
 
     junit = '4.13.2'

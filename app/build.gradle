@@ -19,8 +19,6 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -57,8 +55,5 @@ dependencies {
     kapt hiltDependencies.hiltCompiler
 
     testImplementation mockitoDependencies.mockitoCore
-    androidTestImplementation mockitoDependencies.mockitoAndroid
-
     testImplementation testsDependencies.junit
-    androidTestImplementation androidX.testExtJunit
 }

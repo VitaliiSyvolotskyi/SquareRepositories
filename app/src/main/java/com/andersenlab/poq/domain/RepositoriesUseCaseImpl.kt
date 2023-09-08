@@ -15,7 +15,7 @@ class RepositoriesUseCaseImpl @Inject constructor(private val repositoriesApi: R
 
     override suspend fun fetchRepositories(): Flow<State<List<Repository>>> {
         return flow {
-            val repositories = repositoriesApi.getRepositories().body()?.map {
+            val repositories = repositoriesApi.getRepositories().map {
                 it.toRepositoryItem()
             }
             emit(State.Success(repositories))

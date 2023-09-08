@@ -45,7 +45,7 @@ class RepositoryUseCaseTest {
                 ),
             )
             val repositoryItems = response.map { it.toRepositoryItem() }
-            Mockito.`when`(api.getRepositories().body()).thenReturn(response)
+            Mockito.`when`(api.getRepositories()).thenReturn(response)
             dataRepository.fetchRepositories().collectLatest {
                 if (it is State.Success) {
                     assertEquals(repositoryItems, it.data)
@@ -57,7 +57,7 @@ class RepositoryUseCaseTest {
     @Test
     fun empty() {
         runBlocking {
-            Mockito.`when`(api.getRepositories().body()).thenReturn(listOf())
+            Mockito.`when`(api.getRepositories()).thenReturn(listOf())
             dataRepository.fetchRepositories().collectLatest {
                 if (it is State.Success) {
                     assertEquals(listOf<Repository>(), it.data)

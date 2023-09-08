@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface RepositoriesApi {
     @GET("orgs/square/repos")
-    suspend fun getRepositories(): Response<List<RepositoryResponse>>
+    suspend fun getRepositories(): List<RepositoryResponse>
 }
