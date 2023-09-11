@@ -1,4 +1,4 @@
-package com.andersenlab.poq.core.test.utils
+package com.andersenlab.poq.utils
 
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert

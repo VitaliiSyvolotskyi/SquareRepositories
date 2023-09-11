@@ -1,7 +1,7 @@
-package com.andersenlab.poq
+package com.andersenlab.poq.data
 
-import com.andersenlab.poq.core.test.BaseTest
-import com.andersenlab.poq.core.test.utils.isTheSame
+import com.andersenlab.poq.core.BaseTest
+import com.andersenlab.poq.utils.isTheSame
 import com.andersenlab.poq.data.mapper.DataMapper
 import com.andersenlab.poq.data.model.RepositoryResponse
 import com.andersenlab.poq.domain.model.Repository

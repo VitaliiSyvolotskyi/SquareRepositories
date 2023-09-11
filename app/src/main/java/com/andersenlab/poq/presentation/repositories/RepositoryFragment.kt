@@ -19,9 +19,9 @@ import kotlinx.coroutines.flow.collectLatest
 @AndroidEntryPoint
 class RepositoryFragment : Fragment() {
 
-    private val binding by lazy {
-        FragmentRepositoriesBinding.inflate(LayoutInflater.from(context))
-    }
+    private var _binding: FragmentRepositoriesBinding? = null
+    private val binding: FragmentRepositoriesBinding get() = requireNotNull(_binding)
+
     private val repositoryAdapter by lazy {
         RepositoryAdapter()
     }
@@ -32,6 +32,7 @@ class RepositoryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = FragmentRepositoriesBinding.inflate(LayoutInflater.from(context))
         return binding.root
     }
 
@@ -43,10 +44,15 @@ class RepositoryFragment : Fragment() {
         viewModel.fetchRepositoryItems()
     }
 
-    private fun initView() = with(binding) {
-        binding.repositoriesRV.adapter = repositoryAdapter
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
 
-        binding.swiperefresh.setOnRefreshListener {
+    private fun initView() = with(binding) {
+        repositoriesRV.adapter = repositoryAdapter
+
+        swiperefresh.setOnRefreshListener {
             viewModel.fetchRepositoryItems()
         }
     }
@@ -64,15 +70,19 @@ class RepositoryFragment : Fragment() {
     }
 
     private fun showLoading() {
-        binding.progressBar.show()
-        binding.repositoriesRV.hide()
+        with(binding) {
+            progressBar.show()
+            repositoriesRV.hide()
+        }
     }
 
     private fun showError(message: String) {
-        binding.progressBar.hide()
-        binding.swiperefresh.isRefreshing = false
-        binding.repositoriesRV.hide()
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        with(binding) {
+            progressBar.hide()
+            swiperefresh.isRefreshing = false
+            repositoriesRV.hide()
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun showRepositories(it: List<Repository>) {

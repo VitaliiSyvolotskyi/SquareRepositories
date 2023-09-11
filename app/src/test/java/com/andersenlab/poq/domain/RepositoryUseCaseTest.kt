@@ -1,11 +1,9 @@
-package com.andersenlab.poq
+package com.andersenlab.poq.domain
 
-import com.andersenlab.poq.core.test.BaseTest
+import com.andersenlab.poq.core.BaseTest
 import com.andersenlab.poq.data.api.RepositoriesApi
 import com.andersenlab.poq.data.mapper.DataMapper
 import com.andersenlab.poq.data.model.RepositoryResponse
-import com.andersenlab.poq.domain.RepositoriesUseCase
-import com.andersenlab.poq.domain.RepositoriesUseCaseImpl
 import com.andersenlab.poq.domain.model.Repository
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.runBlocking

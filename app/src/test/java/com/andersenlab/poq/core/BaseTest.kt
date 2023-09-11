@@ -1,4 +1,4 @@
-package com.andersenlab.poq.core.test
+package com.andersenlab.poq.core
 
 import androidx.annotation.CallSuper
 import io.mockk.MockKAnnotations
