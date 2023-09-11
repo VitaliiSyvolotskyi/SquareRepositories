@@ -1,24 +1,36 @@
 package com.andersenlab.poq.presentation.repositories
 
-import android.view.View
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.andersenlab.poq.databinding.ItemSquareReposBinding
 import com.andersenlab.poq.domain.model.Repository
 
-class RepositoryAdapter : ListAdapter<Repository, RepositoryAdapter.ViewHolder>(DIFF_CALLBACK) {
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+class RepositoryAdapter :
+    ListAdapter<Repository, RepositoryAdapter.RepositoryViewHolder>(DIFF_CALLBACK) {
+    class RepositoryViewHolder(var binding: ItemSquareReposBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(RepositoryItemView(parent.context).apply {
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder =
+        RepositoryViewHolder(
+            ItemSquareReposBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
             )
-        })
+        )
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        (holder.itemView as RepositoryItemView).setItem(getItem(position))
+    override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
+        val item = getItem(position)
+        with(holder.binding) {
+            nameTV.text = item.name
+            descriptionTV.isVisible = item.description.isNotBlank()
+            descriptionTV.text = item.description
+        }
+    }
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Repository>() {
